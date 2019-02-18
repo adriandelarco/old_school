@@ -128,7 +128,7 @@ exports.ensureAccessToSerpProxy = async () => {
         process.exit(1);
     }
     // Check that SERP limit was not reached.
-    if (user.limits.isGoogleSerpBanned) {
+    if (userInfo.limits.isGoogleSerpBanned) {
         Apify.utils.log.error(`You have reached your ${REQUIRED_PROXY_GROUP} proxy group limit for number of queries.
        Please contact support at support@apify.com to increase the limit.`);
         process.exit(1);
