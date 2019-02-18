@@ -1,6 +1,6 @@
 # Google search scraper
 
-Crawl unlimited number of queries from [Google search](https://www.google.com) results for any country and language you select.
+Crawl unlimited number of queries from [Google search](https://www.google.com) results for a country and language of your choice.
 
 ## Contents
 
