@@ -27,7 +27,9 @@ Apify.main(async () => {
         requestQueue,
         maxConcurrency,
         requestFunction: ({ request, autoscaledPool }) => {
+            const parsedUrl = url.parse(request.url, true);
             request.userData.startedAt = new Date();
+            Apify.utils.log.info(`Querying "${parsedUrl.query.q}" page number ${request.userData.page} ...`);
             return crawler._defaultRequestFunction({ request, autoscaledPool }); // eslint-disable-line
         },
         useApifyProxy: true,
@@ -38,7 +40,6 @@ Apify.main(async () => {
             request.userData.finishedAt = new Date();
 
             const parsedUrl = url.parse(request.url, true);
-            Apify.utils.log.info(`Querying "${parsedUrl.query.q}" page number ${request.userData.page} ...`);
 
             // Compose the dataset item.
             const data = {
