@@ -1,6 +1,6 @@
 # Google search scraper
 
-Crawl [Google search](https://www.google.com) data for any country and language.
+Crawl [Google search](https://www.google.com) results for any country and language.
 
 ## Contents
 
@@ -15,12 +15,12 @@ Crawl [Google search](https://www.google.com) data for any country and language.
 
 ## Why
 
-Typical use cases for Google search crawling, among thousands others, are:
+Typical use cases for Google search crawling, among thousands of others, are:
 
 <ul>
     <li>Monitor how your website performs in SEO.</li>
-    <li>Analyse advertisements for given set of keywords.</li>
-    <li>Monitor your competition in both SEO and advertisments.</li>
+    <li>Analyze advertisements for a given set of keywords.</li>
+    <li>Monitor your competition in organic and paid results.</li>
     <li>Build a URL list for certain keywords.</li>
 </ul>
 
@@ -28,10 +28,10 @@ Typical use cases for Google search crawling, among thousands others, are:
 
 This actor currently supports only Google text search and doesn't other types such as image or news search.
 
-Queries can be provided as a list of strings or full Google search URLs. Addionaly you can configure country and
-location but this settings apply to entered queries only and not to full Google search URLs.
+Queries can be provided as a list of strings or full Google search URLs. Additionally, you can configure country and
+location but these settings apply to entered queries only and not to a full Google search URLs.
 
-For more information on input see <a href="?section=input-schema">specification</a>.
+For more information on input see the <a href="?section=input-schema">specification</a>.
 
 ## Output
 
