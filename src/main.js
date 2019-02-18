@@ -78,7 +78,7 @@ Apify.main(async () => {
                 if (request.userData.page < maxPagesPerQuery - 1 && maxPagesPerQuery) {
                     await requestQueue.addRequest(createSerpRequest(`http://${parsedUrl.host}${nextPageUrl}`, request.userData.page + 1));
                 } else {
-                    Apify.utils.log.info('Not enqueueing next page "maxPagesPerQuery" have been reached.');
+                    Apify.utils.log.info(`Not enqueueing next page for query "${parsedUrl.query.q}" as "maxPagesPerQuery" have been reached.`);
                 }
             }
 
