@@ -48,8 +48,7 @@ exports.getInitialRequests = ({
             return exports.createSerpRequest(`http://www.${domain}/search?${queryString.stringify(qs)}`, 0);
         });
 
-    const requestsFromSearchUrls = extractLineItems(searchUrls)
-        .map(url => exports.createSerpRequest(url, 0));
+    const requestsFromSearchUrls = searchUrls.map(request => exports.createSerpRequest(request.url, 0));
 
     return requestsFromQueries.concat(requestsFromSearchUrls);
 };

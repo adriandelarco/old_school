@@ -20,7 +20,7 @@ Typical use cases for Google search crawling, among thousands of others, are:
 <ul>
     <li>Monitor how your website performs in SEO.</li>
     <li>Analyze advertisements for a given set of keywords.</li>
-    <li>Monitor your competition in organic and paid results.</li>
+    <li>Monitor your competition in both organic and paid results.</li>
     <li>Build a URL list for certain keywords.</li>
 </ul>
 

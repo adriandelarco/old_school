@@ -13,10 +13,12 @@
         },
         "searchUrls": {
             "title": "Search URLs",
-            "type": "string",
-            "description": "Google search URLs, one URL per line. Note that country and language settings below are not applied to these URLs.",
-            "prefill": "https://www.google.com/search?q=acoomodation&oq=acoomodation&aqs=chrome..69i57j0l5.1637j0j1&sourceid=chrome&ie=UTF-8",
-            "editor": "textarea"
+            "type": "array",
+            "description": "Google search URLs. Note that country and language settings below are not applied to these URLs.",
+            "prefill": [
+                { "url": "https://www.google.com/search?q=accommodation&oq=accommodation&aqs=chrome..69i57j0l5.1637j0j1&sourceid=chrome&ie=UTF-8" }
+            ],
+            "editor": "requestListSources"
         },
         "countryCode": {
             "title": "Country code (gl parameter)",
