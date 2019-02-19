@@ -113,14 +113,14 @@ By default each result item contains search results, ads and additional info for
 },
 ```
 
-If you are interested in organic results only then you can use combination query parameters `fields=searchQuery,organicResults`
-and `unwind=organicResults` to obtain a plain array of organic results. Original URL of a dataset is in form
+If you are interested in organic results only then you can use a combination of query parameters `fields=searchQuery,organicResults`
+and `unwind=organicResults` to obtain a plain array of organic results. Original URL of a dataset is in a form
 
 ```
 https://api.apify.com/v2/datasets/[DATASET_ID]/items?format=[FORMAT]
 ```
 
-where format is one of `csv`, `html`, `xlsx`, `xml`, `rss` and `json`. By adding new parameters
+where the format is one of `csv`, `html`, `xlsx`, `xml`, `rss` and `json`. By adding new parameters
 
 ```
 https://api.apify.com/v2/datasets/[DATASET_ID]/items?format=[FORMAT]&fields=searchQuery,organicResults&unwind=organicResults
