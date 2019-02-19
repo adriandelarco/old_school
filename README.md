@@ -35,7 +35,7 @@ For more information on input see the <a href="?section=input-schema">specificat
 
 ## Output
 
-Each result item contains search results, ads and additional info for one search results page:
+By default each result item contains search results, ads and additional info for one search results page:
 
 ```json
 [{
@@ -111,6 +111,59 @@ Each result item contains search results, ads and additional info for one search
     "pageTitle": "Hotels in Prague - Google Search"
   }
 },
+```
+
+If you are interested in organic results only then you can use combination query parameters `fields=searchQuery,organicResults`
+and `unwind=organicResults` to obtain a plain array of organic results. Original URL of a dataset is in form
+
+```
+https://api.apify.com/v2/datasets/[DATASET_ID]/items?format=[FORMAT]
+```
+
+where format is one of `csv`, `html`, `xlsx`, `xml`, `rss` and `json`. By adding new parameters
+
+```
+https://api.apify.com/v2/datasets/[DATASET_ID]/items?format=[FORMAT]&fields=searchQuery,organicResults&unwind=organicResults
+```
+
+you obtain a following result:
+
+```json
+[
+  {
+    "searchQuery": {
+      "term": "Restaurants in Prague",
+      "page": 0,
+      "type": "SEARCH",
+      "countryCode": "us",
+      "languageCode": "en",
+      "locationUule": null,
+      "resultsPerPage": "10"
+    },
+    "title": "THE 10 BEST Restaurants in Prague 2019 - TripAdvisor",
+    "url": "https://www.tripadvisor.com/Restaurants-g274707-Prague_Bohemia.html",
+    "displayedUrl": "https://www.tripadvisor.com/Restaurants-g274707-Prague_Bohemia.html",
+    "description": "Best Dining in Prague, Bohemia: See 617486 TripAdvisor traveler reviews of 6232 Prague restaurants and search by cuisine, price, location, and more.",
+    "siteLinks": []
+  },
+  {
+    "searchQuery": {
+      "term": "Restaurants in Prague",
+      "page": 0,
+      "type": "SEARCH",
+      "countryCode": "us",
+      "languageCode": "en",
+      "locationUule": null,
+      "resultsPerPage": "10"
+    },
+    "title": "The 11 Best Restaurants in Prague | Elite Traveler",
+    "url": "https://www.elitetraveler.com/finest-dining/restaurant-guide/the-11-best-restaurants-in-prague",
+    "displayedUrl": "https://www.elitetraveler.com/finest-dining/restaurant.../the-11-best-restaurants-in-prag...",
+    "description": "Jan 16, 2018 - With the regional fare certainly a highlight of dining in Prague, a great number of superb international eateries have touched down to become ...",
+    "siteLinks": []
+  },
+  ...
+]
 ```
 
 ## Proxies
