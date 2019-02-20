@@ -42,7 +42,7 @@ By default, each result item contains search results, ads and additional info fo
 [{
   "searchQuery": {
     "term": "Hotels in Prague",
-    "page": 0,
+    "page": 1,
     "type": "SEARCH",
     "countryCode": "cz",
     "languageCode": "en",
@@ -134,7 +134,7 @@ you obtain the following result:
   {
     "searchQuery": {
       "term": "Restaurants in Prague",
-      "page": 0,
+      "page": 1,
       "type": "SEARCH",
       "countryCode": "us",
       "languageCode": "en",
@@ -150,7 +150,7 @@ you obtain the following result:
   {
     "searchQuery": {
       "term": "Restaurants in Prague",
-      "page": 0,
+      "page": 1,
       "type": "SEARCH",
       "countryCode": "us",
       "languageCode": "en",

@@ -10,6 +10,7 @@ const {
 Apify.main(async () => {
     const input = await Apify.getValue('INPUT');
     const { maxConcurrency, maxPagesPerQuery, customDataFunction, deviceType, saveHtml } = input;
+    const nonzeroPage = request.userData.page + 1; // Let's display the same number as Google, i.e. 1, 2, 3..
 
     // Check that user have access to SERP proxy.
     await ensureAccessToSerpProxy();
@@ -48,7 +49,7 @@ Apify.main(async () => {
                 searchQuery: {
                     term: parsedUrl.query.q,
                     device: deviceType,
-                    page: request.userData.page,
+                    page: nonzeroPage,
                     type: 'SEARCH',
                     countryCode: parsedUrl.query.gl || null,
                     languageCode: parsedUrl.query.hl || null,
@@ -83,7 +84,7 @@ Apify.main(async () => {
             await Apify.pushData(data);
 
             // Log some nice info for user.
-            Apify.utils.log.info(`Finished query "${parsedUrl.query.q}" page number ${request.userData.page} (${getInfoStringFromResults(data)})`);
+            Apify.utils.log.info(`Finished query "${parsedUrl.query.q}" page number ${nonzeroPage} (${getInfoStringFromResults(data)})`);
         },
         handleFailedRequestFunction: async ({ request }) => {
             await Apify.pushData({
