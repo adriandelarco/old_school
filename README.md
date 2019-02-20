@@ -1,31 +1,47 @@
-# Google search scraper
+# Google Search Scraper
 
-Crawl unlimited number of queries from [Google search](https://www.google.com) results for the country and language of your choice.
+The actor crawls [Google Search](https://www.google.com) result pages (SERPs)
+and extracts data from them to a structured format such as JSON, CSV or XML.
+Specifically, the actor extract the following data from each Google Search results page:
 
-## Contents
+- Organic results
+- Ads
+- Product ads
+- Related queries
+- Additional custom attributes
 
-<!-- toc -->
+To use the actor, you'll need access to [Apify Proxy](https://apify.com/proxy)
+and have a sufficient limit of the Google SERP queries.
+New Apify users have a free trial of Apify Proxy and Google SERPs,
+older users need to subscribe for a paid plan.
+If you need to increase your Google SERP limit or have any questions,
+please contact [Apify support](https://www.apify.com/contact).
 
-- [Why](#why)
-- [Input](#input)
-- [Output](#output)
-- [Proxies](#proxies)
-- [Notes](#notes)
 
-<!-- tocstop -->
+## Motivation
 
-## Why
-
-Typical use cases for Google search crawling, among thousands of others, are:
+Typical use cases for Google Search crawling, among thousands of others, are:
 
 <ul>
-    <li>Monitor how your website performs in SEO.</li>
-    <li>Analyze advertisements for a given set of keywords.</li>
-    <li>Monitor your competition in both organic and paid results.</li>
-    <li>Build a URL list for certain keywords.</li>
+    <li>Search engine optimization (SEO) — monitor how your website performs in Google for certain queries over a period of time.
+    <li>Analyze ads for a given set of keywords.
+    <li>Monitor your competition in both organic and paid results.
+    <li>Build a URL list for certain keywords. This is useful if you, for example, need good relevant starting points when scraping web pages containing specific phrases.
 </ul>
 
 ## Input
+
+You can specify the following parameters for the Google Search queries:
+
+- Search phrases or raw URLs
+- Country
+- Language
+- Location
+- Number of results per page
+- Mobile or desktop version
+- Maximum number of pages per query
+
+
 
 This actor currently supports only Google text search and not other types, such as image or news search.
 
@@ -169,12 +185,24 @@ you obtain the following result:
 
 ## Proxies
 
+The actor uses the Google SERP feature of [Apify Proxy](https://apify.com/proxy).
+The number of queries to Google Search is counted and charged according to 
+
+
+If you need to increase your limits,
+please contact [Apify Support](https://www.apify.com/contact).
+
+
+The number of SERP queries 
+
+
 This actor requires access to [Google SERP proxy](https://www.apify.com/docs/proxy#google-serp).
 Every user at Apify platform has a limited number of queries each month for free, as you can see in your
 [account](https://my.apify.com/account). If you need more queries, please contact [Apify support](https://www.apify.com/contact)
 to get your limits increased.
 
-## Notes
+
+## Tips and tricks
 
 <ul>
     <li>
