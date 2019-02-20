@@ -178,10 +178,10 @@ to get your limits increased.
 
 <ul>
     <li>
-        This actor uses special proxies to avoid ban which may result in low speed of crawling especially for subsequent pages.
+        This actor uses special proxies to avoid ban which may result in a low speed of crawling especially for subsequent pages.
     </li>
     <li>
-        If you need to scrape the first 100 results then you can decrease duration of crawl more than ten times by setting
+        If you need to scrape the first 100 results then you can decrease a duration of the crawl more than ten times by setting
         `resultsPerPage=100` instead of crawling 10 pages each with 10 results.
     </li>
 </ul>
