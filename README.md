@@ -1,6 +1,6 @@
 # Google search scraper
 
-Crawl unlimited number of queries from [Google search](https://www.google.com) results for a country and language of your choice.
+Crawl unlimited number of queries from [Google search](https://www.google.com) results for the country and language of your choice.
 
 ## Contents
 
@@ -27,16 +27,16 @@ Typical use cases for Google search crawling, among thousands of others, are:
 
 ## Input
 
-This actor currently supports only Google text search and doesn't other types such as image or news search.
+This actor currently supports only Google text search and not other types, such as image or news search.
 
 Queries can be provided as a list of strings or full Google search URLs. Additionally, you can configure country and
-location but these settings apply to entered queries only and not to a full Google search URLs.
+location, but these settings only apply to entered queries and not to full Google search URLs.
 
-For more information on input see the <a href="?section=input-schema">specification</a>.
+For more information on input, see the <a href="?section=input-schema">specification</a>.
 
 ## Output
 
-By default each result item contains search results, ads and additional info for one search results page:
+By default, each result item contains search results, ads and additional info for one search results page:
 
 ```json
 [{
@@ -114,8 +114,8 @@ By default each result item contains search results, ads and additional info for
 },
 ```
 
-If you are interested in organic results only then you can use a combination of query parameters `fields=searchQuery,organicResults`
-and `unwind=organicResults` to obtain a plain array of organic results. Original URL of a dataset is in a form
+If you are interested in organic results only, then you can use a combination of query parameters `fields=searchQuery,organicResults`
+and `unwind=organicResults` to obtain a plain array of organic results. The original URL of a dataset is in the form
 
 ```
 https://api.apify.com/v2/datasets/[DATASET_ID]/items?format=[FORMAT]
@@ -127,7 +127,7 @@ where the format is one of `csv`, `html`, `xlsx`, `xml`, `rss` and `json`. By ad
 https://api.apify.com/v2/datasets/[DATASET_ID]/items?format=[FORMAT]&fields=searchQuery,organicResults&unwind=organicResults
 ```
 
-you obtain a following result:
+you obtain the following result:
 
 ```json
 [
@@ -170,8 +170,8 @@ you obtain a following result:
 ## Proxies
 
 This actor requires access to [Google SERP proxy](https://www.apify.com/docs/proxy#google-serp).
-Every user at Apify platform has limited number of queries each month for free as you can see in your
-[account](https://my.apify.com/account). If you need more queries please contact [Apify support](https://www.apify.com/contact)
+Every user at Apify platform has a limited number of queries each month for free, as you can see in your
+[account](https://my.apify.com/account). If you need more queries, please contact [Apify support](https://www.apify.com/contact)
 to get your limits increased.
 
 ## Notes
