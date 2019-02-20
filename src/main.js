@@ -1,6 +1,6 @@
 const Apify = require('apify');
 const url = require('url');
-const { REQUIRED_PROXY_GROUP } = require('./consts');
+const { REQUIRED_PROXY_GROUP, GOOGLE_DEFAULT_RESULTS_PER_PAGE } = require('./consts');
 const extractors = require('./extractors');
 const {
     getInitialRequests, executeCustomDataFunction, getInfoStringFromResults, createSerpRequest,
@@ -53,7 +53,7 @@ Apify.main(async () => {
                     countryCode: parsedUrl.query.gl || null,
                     languageCode: parsedUrl.query.hl || null,
                     locationUule: parsedUrl.query.uule || null,
-                    resultsPerPage: parsedUrl.query.num || null,
+                    resultsPerPage: parsedUrl.query.num || GOOGLE_DEFAULT_RESULTS_PER_PAGE,
                 },
                 url: request.url,
                 hasNextPage: false,
@@ -69,8 +69,6 @@ Apify.main(async () => {
 
             if (saveHtml) data.html = html;
 
-            await Apify.pushData(data);
-
             // Enqueue new page.
             const nextPageUrl = $('#pnnext').attr('href');
             if (nextPageUrl) {
@@ -81,6 +79,8 @@ Apify.main(async () => {
                     Apify.utils.log.info(`Not enqueueing next page for query "${parsedUrl.query.q}" as "maxPagesPerQuery" have been reached.`);
                 }
             }
+
+            await Apify.pushData(data);
 
             // Log some nice info for user.
             Apify.utils.log.info(`Finished query "${parsedUrl.query.q}" page number ${request.userData.page} (${getInfoStringFromResults(data)})`);

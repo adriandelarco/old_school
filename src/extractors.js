@@ -78,7 +78,9 @@ exports.extractPaidProducts = ($) => {
 
 exports.extractTotalResults = ($) => {
     const wholeString = $('#resultStats').text();
-    const numberString = wholeString.replace(/[^\d]/g, '');
+
+    // Get number as string from text "Přibližný počet výsledků: 6 730 000 000 (0,30 s)"
+    const numberString = wholeString.split('(').shift().replace(/[^\d]/g, '');
 
     return Number(numberString);
 };

@@ -10,6 +10,7 @@ Crawl unlimited number of queries from [Google search](https://www.google.com) r
 - [Input](#input)
 - [Output](#output)
 - [Proxies](#proxies)
+- [Notes](#notes)
 
 <!-- tocstop -->
 
@@ -172,3 +173,15 @@ This actor requires access to [Google SERP proxy](https://www.apify.com/docs/pro
 Every user at Apify platform has limited number of queries each month for free as you can see in your
 [account](https://my.apify.com/account). If you need more queries please contact [Apify support](https://www.apify.com/contact)
 to get your limits increased.
+
+## Notes
+
+<ul>
+    <li>
+        This actor uses special proxies to avoid ban which may result in low speed of crawling especially for subsequent pages.
+    </li>
+    <li
+        If you need to scrape the first 100 results then you can decrease duration of crawl more than ten times by setting
+        `resultsPerPage=100` instead of crawling 10 pages each with 10 results.
+    </li>
+</ul>

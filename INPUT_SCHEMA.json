@@ -1,5 +1,5 @@
 {
-    "title": "Google SERP crawler input",
+    "title": "Google search scraper input",
     "description": "Define the Google search query using parameters below. You can scrape the data using specific language, country and location UUID.",
     "type": "object",
     "schemaVersion": 1,
