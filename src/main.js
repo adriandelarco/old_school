@@ -10,7 +10,6 @@ const {
 Apify.main(async () => {
     const input = await Apify.getValue('INPUT');
     const { maxConcurrency, maxPagesPerQuery, customDataFunction, deviceType, saveHtml } = input;
-    const nonzeroPage = request.userData.page + 1; // Let's display the same number as Google, i.e. 1, 2, 3..
 
     // Check that user have access to SERP proxy.
     await ensureAccessToSerpProxy();
@@ -40,6 +39,7 @@ Apify.main(async () => {
         handlePageFunction: async ({ request, response, html, $ }) => {
             request.userData.finishedAt = new Date();
 
+            const nonzeroPage = request.userData.page + 1; // Let's display the same number as Google, i.e. 1, 2, 3..
             const parsedUrl = url.parse(request.url, true);
 
             // Compose the dataset item.
