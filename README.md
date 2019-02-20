@@ -182,6 +182,6 @@ to get your limits increased.
     </li>
     <li>
         If you need to scrape the first 100 results then you can decrease a duration of the crawl more than ten times by setting
-        `resultsPerPage=100` instead of crawling 10 pages each with 10 results.
+        <code>resultsPerPage=100</code> instead of crawling 10 pages each with 10 results.
     </li>
 </ul>
