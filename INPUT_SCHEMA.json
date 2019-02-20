@@ -1,6 +1,6 @@
 {
-    "title": "Google search scraper input",
-    "description": "Define the Google search query using parameters below. You can scrape the data using specific language, country and location UUID.",
+    "title": "Google Search Scraper input",
+    "description": "Define the Google Search query using parameters below. You can scrape the data using specific language, country and location UUID.",
     "type": "object",
     "schemaVersion": 1,
     "properties": {
@@ -14,16 +14,16 @@
         "searchUrls": {
             "title": "Search URLs",
             "type": "array",
-            "description": "Google search URLs. Note that country and language settings below are not applied to these URLs.",
+            "description": "Google Search query URLs. Beware that country, language, location and other settings are not applied to these URLs; the URLs are used as they are.",
             "prefill": [
                 { "url": "https://www.google.com/search?q=accommodation&oq=accommodation&aqs=chrome..69i57j0l5.1637j0j1&sourceid=chrome&ie=UTF-8" }
             ],
             "editor": "requestListSources"
         },
         "countryCode": {
-            "title": "Country code (gl parameter)",
+            "title": "Country code",
             "type": "string",
-            "description": "Coutry you want to use for localized search results. Allowed country codes are a subset of <a href=\"https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2\" target=\"_blank\">ISO 3166</a> supported by Google. This setting is not applied to <strong>Search URLs</strong> but only to <strong>Search queries</strong>.",
+            "description": "Country for the search results. It's passed to Google Search as the <code>gl</code> URL query parameter. The values must be lower-cased <a href=\"https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2\" target=\"_blank\">ISO 3166</a> country codes supported by Google.<br><br>This setting only applies to <strong>Search queries</strong>, but not to <strong>Search URLs</strong>.",
             "default": "us",
             "editor": "select",
             "enum": [
@@ -512,9 +512,9 @@
             ]
         },
         "languageCode": {
-            "title": "Language code (hl parameter)",
+            "title": "Language code",
             "type": "string",
-            "description": "Language you want to use for localized search results. Allowed laguage codes are subset of <a href=\"https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes\" target=\"_blank\">ISO 639</a> supported by Google search. This setting is not applied to <strong>Search URLs</strong> but only to <strong>Search queries</strong>.",
+            "description": "Language for the search results. It's passed to Google Search as the <code>hl</code> URL query parameter. The values must be lower-cased <a href=\"https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes\" target=\"_blank\">ISO 639</a> language codes supported by Google.<br><br>This setting only applies to <strong>Search queries</strong>, but not to <strong>Search URLs</strong>.",
             "default": "en",
             "editor": "select",
             "enum": [
@@ -691,15 +691,15 @@
             ]
         },
         "locationUule": {
-            "title": "Uule location code",
+            "title": "UULE location code",
             "type": "string",
-            "description": "Location <a href=\"https://moz.com/ugc/geolocation-the-ultimate-tip-to-emulate-local-search\" target=\"_blank\">UULE</a> code you want to use for geo spacious search results. This setting is not applied to <strong>Search URLs</strong> but only to <strong>Search queries</strong>.",
+            "description": "The code for a geolocation of the search results. It's passed to Google Search as the <code>uule</code> URL query parameter. For more information, see <a href='https://moz.com/ugc/geolocation-the-ultimate-tip-to-emulate-local-search' target='_blank'>UULE code</a>.<br><br>This setting only applies to <strong>Search queries</strong>, but not to <strong>Search URLs</strong>.",
             "editor": "textfield"
         },
         "resultsPerPage": {
-            "title": "Results number per page",
+            "title": "Results per page",
             "type": "integer",
-            "description": "Number of results per page you want to query. Maximum is 100.",
+            "description": "Number of search results per page. By default, Google Search shows 10 pages. The allowed values are: <code>10</code>, <code>20</code>, <code>30</code>, <code>40</code>, <code>50</code> and <code>100</code>.<br><br>This setting only applies to <strong>Search queries</strong>, but not to <strong>Search URLs</strong>.",
             "default": 10,
             "maximum": 100,
             "minimum": 1
@@ -707,21 +707,21 @@
         "maxPagesPerQuery": {
             "title": "Max pages per query",
             "type": "integer",
-            "description": "Number of results pages queried for each query and search URL.",
+            "description": "The maximum number of search result pages crawled for each search query or URL. Note that a value greated than <code>1</code> might significantly increase the duration of the crawl.",
             "default": 1,
             "minimum": 1
         },
         "customDataFunction": {
             "title": "Custom data function",
             "type": "string",
-            "description": "Custom function to extract additional data from HTML response. Any data this function returns will be appended to the results under the <code>customData</code> property.",
+            "description": "Custom JavaScript function to extract additional attributes from the HTML of the result pages. The function accepts the same parameters as the <code>handlePageFunction</code> of the <a href='https://sdk.apify.com/docs/api/cheeriocrawler#new-cheeriocrawleroptions'>CheerioCrawler</a> in Apify SDK. The return value of the function is saved to the results as the <code>customData</code> property.",
             "editor": "javascript",
             "prefill": "async ({ input, $, request, response, html }) => {\n  return {\n    pageTitle: $('title').text(),\n  };\n};"
         },
         "maxConcurrency": {
             "title": "Max concurrency",
             "type": "integer",
-            "description": "Maximum concurrency for this crawler. Higher number will give you results faster but will burn your available proxies faster on the other hand.",
+            "description": "The maximum number of search results pages the crawler will load in parallel. Higher number means you will get your results faster, but also it will burn your available proxies quicker.",
             "default": 10,
             "maximum": 100,
             "minimum": 1
@@ -729,7 +729,7 @@
         "saveHtml": {
             "title": "Save HTML",
             "type": "boolean",
-            "description": "If checked then HTML of Google search results page will be stored in results.",
+            "description": "If checked, then the results with contain the raw HTML of Google Search results pages.",
             "default": false,
             "groupCaption": "Options",
             "groupDescription": "Various options for this actor"
@@ -737,9 +737,9 @@
         "mobileResults": {
             "title": "Mobile results",
             "type": "boolean",
-            "description": "If checked then results for mobile device are returned. By default desktop results are fetched.",
+            "description": "If checked, the crawler will return results for mobile version of the Google Search. By default, desktop results are returned.",
             "default": false
         }
     },
-    "required": ["queries"]
+    "required": []
 }
