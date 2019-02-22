@@ -1,8 +1,8 @@
 # Google Search Scraper
 
-The actor crawls [Google Search](https://www.google.com) result pages (SERPs)
-and extracts data from them to a structured format such as JSON, CSV or XML.
-Specifically, the actor extract the following data from each Google Search results page:
+The actor crawls [Google Search](https://www.google.com/search) result pages (SERPs)
+and extracts data from the HTML pages to a structured format such as JSON, XML or Excel.
+Specifically, the actor extracts the following data from each Google Search results page:
 
 - Organic results
 - Ads
@@ -10,52 +10,64 @@ Specifically, the actor extract the following data from each Google Search resul
 - Related queries
 - Additional custom attributes
 
-To use the actor, you'll need access to [Apify Proxy](https://apify.com/proxy)
-and have a sufficient limit of the Google SERP queries.
-New Apify users have a free trial of Apify Proxy and Google SERPs,
-older users need to subscribe for a paid plan.
-If you need to increase your Google SERP limit or have any questions,
-please contact [Apify support](https://www.apify.com/contact).
+Note that the actor doesn't support special types of searches,
+such as Google Shopping, Images or News.
+
+## Use cases
+
+For many people, Google Search is the entry point to the internet,
+so it's really important for businesses how they rank on Google.
+Unfortunately, Google Search doesn't provide a public API, so the only way to monitor
+the search results and ranking is to use [web scraping](https://en.wikipedia.org/wiki/Web_scraping).
+
+The typical use cases are:
+
+- [Search engine optimization (SEO)](https://en.wikipedia.org/wiki/Search_engine_optimization)
+  — monitor how your website performs on Google for certain queries over a period of time.
+- Analyze ads for a given set of keywords.
+- Monitor your competition in both organic and paid results.
+- Build a URL list for certain keywords. This is useful if you, for example, need good relevant starting points when scraping web pages containing specific phrases.
+
+Read more in a [blog post](https://blog.apify.com/scrape-results-from-google-search-22a20537a951).
 
 
-## Motivation
+## Input settings
 
-Typical use cases for Google Search crawling, among thousands of others, are:
+The actor gives you a fine-grained control about what kind of Google Search results you'll get.
+You can specify the following settings:
 
-<ul>
-    <li>Search engine optimization (SEO) — monitor how your website performs in Google for certain queries over a period of time.
-    <li>Analyze ads for a given set of keywords.
-    <li>Monitor your competition in both organic and paid results.
-    <li>Build a URL list for certain keywords. This is useful if you, for example, need good relevant starting points when scraping web pages containing specific phrases.
-</ul>
-
-## Input
-
-You can specify the following parameters for the Google Search queries:
-
-- Search phrases or raw URLs
-- Country
-- Language
-- Location
+- Query phrases or raw URLs
+- Country & language
+- Exact geolocation
 - Number of results per page
 - Mobile or desktop version
-- Maximum number of pages per query
+
+For a complete description of the settings,
+see the [input specification](https://www.apify.com/apify/google-search-scraper?section=input-schema).
 
 
+## Usage
 
-This actor currently supports only Google text search and not other types, such as image or news search.
+To use the actor, you'll need access to [Apify Proxy](https://apify.com/proxy)
+and have a sufficient limit of the Google SERP queries
+(which you can view on your [Account](https://my.apify.com/account) page).
+New Apify users have a free trial of Apify Proxy and Google SERPs,
+which lets you try this actor free of charge.
+Once the Apify Proxy trial is expired,
+you'll need to subscribe to a [paid plan](https://apify.com/pricing) in order to keep using this actor.
+If you need to increase your Google SERP limit or have any questions,
+please contact [Apify support](https://apify.com/contact).
 
-Queries can be provided as a list of strings or full Google search URLs. Additionally, you can configure country and
-location, but these settings only apply to entered queries and not to full Google search URLs.
 
-For more information on input, see the <a href="?section=input-schema">specification</a>.
+## Results
 
-## Output
-
-By default, each result item contains search results, ads and additional info for one search results page:
+The actor stores its result into a dataset, from which you can export it
+to various formats, such as JSON, XML, CSV or Excel.
+For each Google Search results page, the actor creates one record
+in the dataset, which looks as follows (in JSON):
 
 ```json
-[{
+{
   "searchQuery": {
     "term": "Hotels in Prague",
     "page": 1,
@@ -130,14 +142,22 @@ By default, each result item contains search results, ads and additional info fo
 },
 ```
 
-If you are interested in organic results only, then you can use a combination of query parameters `fields=searchQuery,organicResults`
-and `unwind=organicResults` to obtain a plain array of organic results. The original URL of a dataset is in the form
+The results are stored to the default dataset associated with the actor run.
+From there, you can export it to various formats using the [Get dataset items](https://www.apify.com/docs/api/v2#/reference/datasets/item-collection/get-items)
+API endpoint. Note that the API endpoint accepts various parameters
+that let you control what kind of data you'll get.
+
+For example, if you are interested in organic results only,
+then you can use a combination of query parameters `fields=searchQuery,organicResults`
+and `unwind=organicResults` to obtain a plain array of organic results.
+The original URL of a dataset has the form:
 
 ```
 https://api.apify.com/v2/datasets/[DATASET_ID]/items?format=[FORMAT]
 ```
 
-where the format is one of `csv`, `html`, `xlsx`, `xml`, `rss` and `json`. By adding new parameters
+where the format is one of `csv`, `html`, `xlsx`, `xml`, `rss` and `json`.
+By adding the following query parameters
 
 ```
 https://api.apify.com/v2/datasets/[DATASET_ID]/items?format=[FORMAT]&fields=searchQuery,organicResults&unwind=organicResults
@@ -183,33 +203,9 @@ you obtain the following result:
 ]
 ```
 
-## Proxies
-
-The actor uses the Google SERP feature of [Apify Proxy](https://apify.com/proxy).
-The number of queries to Google Search is counted and charged according to 
-
-
-If you need to increase your limits,
-please contact [Apify Support](https://www.apify.com/contact).
-
-
-The number of SERP queries 
-
-
-This actor requires access to [Google SERP proxy](https://www.apify.com/docs/proxy#google-serp).
-Every user at Apify platform has a limited number of queries each month for free, as you can see in your
-[account](https://my.apify.com/account). If you need more queries, please contact [Apify support](https://www.apify.com/contact)
-to get your limits increased.
-
 
 ## Tips and tricks
 
-<ul>
-    <li>
-        This actor uses special proxies to avoid ban which may result in a low speed of crawling especially for subsequent pages.
-    </li>
-    <li>
-        If you need to scrape the first 100 results then you can decrease a duration of the crawl more than ten times by setting
-        <code>resultsPerPage=100</code> instead of crawling 10 pages each with 10 results.
-    </li>
-</ul>
+- which may result in a low speed of crawling especially for subsequent pages.
+- If you need to scrape the first 100 results then you can decrease a duration of the crawl more than ten times by setting
+  `resultsPerPage=100` instead of crawling 10 pages each with 10 results.
