@@ -16,7 +16,7 @@
             "type": "array",
             "description": "Google Search query URLs. Beware that country, language, location and other settings are not applied to these URLs; the URLs are used as they are.",
             "prefill": [
-                { "url": "https://www.google.com/search?q=accommodation&oq=accommodation&aqs=chrome..69i57j0l5.1637j0j1&sourceid=chrome&ie=UTF-8" }
+                { "url": "https://www.google.com/search?q=open+web" }
             ],
             "editor": "requestListSources"
         },
