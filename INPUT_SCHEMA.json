@@ -1,24 +1,15 @@
 {
     "title": "Google Search Scraper input",
-    "description": "Define the Google Search query using parameters below. You can scrape the data using specific language, country and location UUID.",
+    "description": "Define the Google Search query using the parameters below. You can enter either search queries and/or full Google Search URLs. You can scrape the data using specific language, country and location UUID. Note that these additional settings are applied only to search queries.",
     "type": "object",
     "schemaVersion": 1,
     "properties": {
         "queries": {
-            "title": "Search queries",
+            "title": "Search queries or URLs",
             "type": "string",
-            "description": "Google search queries, one query per line.",
-            "prefill": "Hotels in Prague\nRestaurants in Prague",
+            "description": "Google Search queries and/or Google Search URLs, one item per line.",
+            "prefill": "Hotels in Prague\nRestaurants in Prague\nhttps://www.google.com/search?safe=off&source=hp&ei=YQhwXN3ZIoGCk74PrIiM8A4&q=accommodation&btnK=Hledat+Googlem&oq=accommodation",
             "editor": "textarea"
-        },
-        "searchUrls": {
-            "title": "Search URLs",
-            "type": "array",
-            "description": "Google Search query URLs. Beware that country, language, location and other settings are not applied to these URLs; the URLs are used as they are.",
-            "prefill": [
-                { "url": "https://www.google.com/search?q=open+web" }
-            ],
-            "editor": "requestListSources"
         },
         "countryCode": {
             "title": "Country code",

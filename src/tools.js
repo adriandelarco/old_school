@@ -6,12 +6,8 @@ const { REQUIRED_PROXY_GROUP } = require('./consts');
 const {
     DEFAULT_GOOGLE_SEARCH_DOMAIN_COUNTRY_CODE,
     COUNTRY_CODE_TO_GOOGLE_SEARCH_DOMAIN,
+    GOOGLE_SEARCH_URL_REGEX,
 } = require('./consts');
-
-const extractLineItems = str => str
-    .split('\n')
-    .map(item => item.trim())
-    .filter(item => !!item);
 
 exports.createSerpRequest = (url, page) => {
     if (url.startsWith('https://')) url = url.replace('https://', 'http://');
@@ -26,18 +22,24 @@ exports.createSerpRequest = (url, page) => {
 
 exports.getInitialRequests = ({
     queries,
-    searchUrls,
     mobileResults,
     countryCode,
     languageCode,
     locationUule,
     resultsPerPage,
 }) => {
-    const requestsFromQueries = extractLineItems(queries)
-        .map((query) => {
+    return queries
+        .split('\n')
+        .map(item => item.trim())
+        .filter(item => !!item)
+        .map((queryOrUrl) => {
+            // If it's serach URL ...
+            if (GOOGLE_SEARCH_URL_REGEX.test(queryOrUrl)) return exports.createSerpRequest(queryOrUrl, 0);
+
+            // It's query ...
             const domain = COUNTRY_CODE_TO_GOOGLE_SEARCH_DOMAIN[countryCode]
                 || COUNTRY_CODE_TO_GOOGLE_SEARCH_DOMAIN[DEFAULT_GOOGLE_SEARCH_DOMAIN_COUNTRY_CODE];
-            const qs = { q: query };
+            const qs = { q: queryOrUrl };
 
             if (countryCode) qs.gl = countryCode;
             if (languageCode) qs.hl = languageCode;
@@ -47,10 +49,6 @@ exports.getInitialRequests = ({
 
             return exports.createSerpRequest(`http://www.${domain}/search?${queryString.stringify(qs)}`, 0);
         });
-
-    const requestsFromSearchUrls = searchUrls.map(request => exports.createSerpRequest(request.url, 0));
-
-    return requestsFromQueries.concat(requestsFromSearchUrls);
 };
 
 exports.executeCustomDataFunction = async (funcString, params) => {
