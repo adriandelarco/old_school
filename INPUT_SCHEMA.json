@@ -684,7 +684,7 @@
         "locationUule": {
             "title": "UULE location code",
             "type": "string",
-            "description": "The code for a geolocation of the search results. It's passed to Google Search as the <code>uule</code> URL query parameter. For more information, see <a href='https://moz.com/ugc/geolocation-the-ultimate-tip-to-emulate-local-search' target='_blank'>UULE code</a>.<br><br>This setting only applies to <strong>Search queries</strong>, but not to <strong>Search URLs</strong>.",
+            "description": "The code for geolocation of search results. It's passed to Google Search as the <code>uule</code> URL query parameter. For more information, see <a href='https://moz.com/ugc/geolocation-the-ultimate-tip-to-emulate-local-search' target='_blank'>UULE code</a>.<br><br>This setting only applies to <strong>Search queries</strong>, but not to <strong>Search URLs</strong>.",
             "editor": "textfield"
         },
         "resultsPerPage": {
@@ -698,7 +698,7 @@
         "maxPagesPerQuery": {
             "title": "Max pages per query",
             "type": "integer",
-            "description": "The maximum number of search result pages crawled for each search query or URL. Note that a value greated than <code>1</code> might significantly increase the duration of the crawl.",
+            "description": "The maximum number of search result pages crawled for each search query or URL. Note that a value greater than <code>1</code> might significantly increase the duration of the crawl.",
             "default": 1,
             "minimum": 1
         },
@@ -712,7 +712,7 @@
         "maxConcurrency": {
             "title": "Max concurrency",
             "type": "integer",
-            "description": "The maximum number of search results pages the crawler will load in parallel. Higher number means you will get your results faster, but also it will burn your available proxies quicker.",
+            "description": "The maximum number of search results pages the crawler will load in parallel. A higher number means you will get your results faster, but also it will burn through your available proxies quicker.",
             "default": 10,
             "maximum": 100,
             "minimum": 1
@@ -720,7 +720,7 @@
         "saveHtml": {
             "title": "Save HTML",
             "type": "boolean",
-            "description": "If checked, then the results with contain the raw HTML of Google Search results pages.",
+            "description": "If checked, then the results will contain the raw HTML of Google Search results pages.",
             "default": false,
             "groupCaption": "Options",
             "groupDescription": "Various options for this actor"
@@ -728,7 +728,7 @@
         "mobileResults": {
             "title": "Mobile results",
             "type": "boolean",
-            "description": "If checked, the crawler will return results for mobile version of the Google Search. By default, desktop results are returned.",
+            "description": "If checked, the crawler will return results for the mobile version of the Google Search. By default, desktop results are returned.",
             "default": false
         }
     },
