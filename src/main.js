@@ -1,7 +1,8 @@
 const Apify = require('apify');
 const url = require('url');
 const { REQUIRED_PROXY_GROUP, GOOGLE_DEFAULT_RESULTS_PER_PAGE } = require('./consts');
-const extractors = require('./extractors');
+const extractorsDesktop = require('./extractors_desktop');
+const extractorsMobile = require('./extractors_mobile');
 const {
     getInitialRequests, executeCustomDataFunction, getInfoStringFromResults, createSerpRequest,
     logAsciiArt, createDebugInfo, ensureAccessToSerpProxy,
@@ -9,7 +10,7 @@ const {
 
 Apify.main(async () => {
     const input = await Apify.getValue('INPUT');
-    const { maxConcurrency, maxPagesPerQuery, customDataFunction, deviceType, saveHtml } = input;
+    const { maxConcurrency, maxPagesPerQuery, customDataFunction, mobileResults, saveHtml } = input;
 
     // Check that user have access to SERP proxy.
     await ensureAccessToSerpProxy();
@@ -20,6 +21,7 @@ Apify.main(async () => {
     if (!initialRequests.length) throw new Error('At least one search query or search URL must be provided in input!');
     const requestList = await Apify.openRequestList('initial-requests', initialRequests);
     const requestQueue = await Apify.openRequestQueue();
+    const extractors = mobileResults ? extractorsMobile : extractorsDesktop;
 
     // Create crawler.
     const crawler = new Apify.CheerioCrawler({
@@ -48,7 +50,7 @@ Apify.main(async () => {
                 '#error': false,
                 searchQuery: {
                     term: parsedUrl.query.q,
-                    device: deviceType,
+                    device: mobileResults ? 'MOBILE' : 'DESKTOP',
                     page: nonzeroPage,
                     type: 'SEARCH',
                     countryCode: parsedUrl.query.gl || null,

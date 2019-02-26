@@ -1,4 +1,4 @@
-exports.COUNTRY_CODE_TO_GOOGLE_SEARCH_DOMAIN = require('./google-domains.json');
+exports.COUNTRY_CODE_TO_GOOGLE_SEARCH_DOMAIN = require('./google_domains.json');
 
 exports.GOOGLE_SEARCH_DOMAINS = Object.values(exports.COUNTRY_CODE_TO_GOOGLE_SEARCH_DOMAIN);
 
