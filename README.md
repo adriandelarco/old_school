@@ -1,7 +1,7 @@
 # Google Search Scraper
 
 The actor crawls [Google Search](https://www.google.com/search) result pages (SERPs)
-and extracts data from the HTML pages to a structured format such as JSON, XML or Excel.
+and extracts data from HTML pages to a structured format such as JSON, XML or Excel.
 Specifically, the actor extracts the following data from each Google Search results page:
 
 - Organic results
@@ -16,24 +16,24 @@ such as Google Shopping, Images or News.
 ## Use cases
 
 For many people, Google Search is the entry point to the internet,
-so it's really important for businesses how they rank on Google.
+so how they rank on Google is really important for businesses.
 Unfortunately, Google Search doesn't provide a public API, so the only way to monitor
-the search results and ranking is to use [web scraping](https://en.wikipedia.org/wiki/Web_scraping).
+search results and ranking is to use [web scraping](https://en.wikipedia.org/wiki/Web_scraping).
 
-The typical use cases are:
+Typical use cases are:
 
 - [Search engine optimization (SEO)](https://en.wikipedia.org/wiki/Search_engine_optimization)
-  — monitor how your website performs on Google for certain queries over a period of time.
+— Monitor how your website performs on Google for certain queries over a period of time.
 - Analyze ads for a given set of keywords.
 - Monitor your competition in both organic and paid results.
 - Build a URL list for certain keywords. This is useful if you, for example, need good relevant starting points when scraping web pages containing specific phrases.
 
-Read more in a [blog post](https://blog.apify.com/scrape-results-from-google-search-22a20537a951).
+Read more in this [blog post](https://blog.apify.com/scrape-results-from-google-search-22a20537a951).
 
 
 ## Input settings
 
-The actor gives you a fine-grained control about what kind of Google Search results you'll get.
+The actor gives you fine-grained control about what kind of Google Search results you'll get.
 You can specify the following settings:
 
 - Query phrases or raw URLs
@@ -42,15 +42,15 @@ You can specify the following settings:
 - Number of results per page
 - Mobile or desktop version
 
-For a complete description of the settings,
+For a complete description of all settings,
 see the [input specification](https://www.apify.com/apify/google-search-scraper?section=input-schema).
 
 
 ## Usage
 
 To use the actor, you'll need access to [Apify Proxy](https://apify.com/proxy)
-and have a sufficient limit of the Google SERP queries
-(which you can view on your [Account](https://my.apify.com/account) page).
+and have a sufficient limit for Google SERP queries
+(you can view this on your [Account](https://my.apify.com/account) page).
 New Apify users have a free trial of Apify Proxy and Google SERPs,
 which lets you try this actor free of charge.
 Once the Apify Proxy trial is expired,
@@ -61,7 +61,7 @@ please contact [Apify support](https://apify.com/contact).
 
 ## Results
 
-The actor stores its result into a dataset, from which you can export it
+The actor stores its result in a dataset, from which you can export it
 to various formats, such as JSON, XML, CSV or Excel.
 For each Google Search results page, the actor creates one record
 in the dataset, which looks as follows (in JSON):
@@ -142,12 +142,12 @@ in the dataset, which looks as follows (in JSON):
 },
 ```
 
-The results are stored to the default dataset associated with the actor run.
+The results are stored in the default dataset associated with the actor run.
 From there, you can export it to various formats using the [Get dataset items](https://www.apify.com/docs/api/v2#/reference/datasets/item-collection/get-items)
 API endpoint. Note that the API endpoint accepts various parameters
 that let you control what kind of data you'll get.
 
-For example, if you are interested in organic results only,
+For example, if you are only interested in organic results,
 then you can use a combination of query parameters `fields=searchQuery,organicResults`
 and `unwind=organicResults` to obtain a plain array of organic results.
 The original URL of a dataset has the form:
@@ -202,10 +202,8 @@ you obtain the following result:
   ...
 ]
 ```
-
+which may result in a low speed of crawling, especially for subsequent pages.
 
 ## Tips and tricks
-
-- which may result in a low speed of crawling especially for subsequent pages.
-- If you need to scrape the first 100 results then you can decrease a duration of the crawl more than ten times by setting
+- If you need to scrape the first 100 results, then you can decrease the duration of the crawl by more than ten times by setting
   `resultsPerPage=100` instead of crawling 10 pages each with 10 results.
