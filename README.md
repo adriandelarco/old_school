@@ -202,8 +202,10 @@ you obtain the following result:
   ...
 ]
 ```
-which may result in a low speed of crawling, especially for subsequent pages.
 
 ## Tips and tricks
-- If you need to scrape the first 100 results, then you can decrease the duration of the crawl by more than ten times by setting
-  `resultsPerPage=100` instead of crawling 10 pages each with 10 results.
+
+Crawling of the second and further result pages might be slower than the first page.
+If you need to scrape the first 100 results,
+then you can greatly improve the speed of the crawl by setting
+`resultsPerPage=100` instead of crawling 10 pages each with 10 results.
