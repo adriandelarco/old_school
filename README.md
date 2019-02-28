@@ -28,7 +28,8 @@ Typical use cases are:
 - Monitor your competition in both organic and paid results.
 - Build a URL list for certain keywords. This is useful if you, for example, need good relevant starting points when scraping web pages containing specific phrases.
 
-Read more in this [blog post](https://blog.apify.com/scrape-results-from-google-search-22a20537a951).
+Read more in this blog post [How to scrape Google Search
+](https://blog.apify.com/unofficial-google-search-api-from-apify-22a20537a951).
 
 
 ## Input settings
