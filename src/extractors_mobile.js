@@ -12,7 +12,7 @@ exports.extractOgranicResults = ($) => {
             .each((i, siteLinkEl) => {
                 siteLinks.push({
                     title: $(siteLinkEl).text(),
-                    url: $(siteLinkEl).attr('href'),
+                    link: $(siteLinkEl).attr('href'),
                     description: null,
                 });
             });
@@ -21,7 +21,7 @@ exports.extractOgranicResults = ($) => {
             title: $(el)
                 .find('a div[role="heading"]')
                 .text(),
-            url: $(el)
+            link: $(el)
                 .find('a')
                 .first()
                 .attr('href'),
@@ -51,7 +51,7 @@ exports.extractPaidResults = ($) => {
             .each((i, siteLinkEl) => {
                 siteLinks.push({
                     title: $(siteLinkEl).text(),
-                    url: $(siteLinkEl).attr('href'),
+                    link: $(siteLinkEl).attr('href'),
                     description: null,
                 });
             });
@@ -60,7 +60,7 @@ exports.extractPaidResults = ($) => {
             title: $(el)
                 .find('a div[role="heading"]')
                 .text(),
-            url: $(el)
+            link: $(el)
                 .find('a')
                 .first()
                 .attr('href'),
@@ -95,7 +95,7 @@ exports.extractPaidProducts = ($) => {
 
         products.push({
             title: headingEl.text(),
-            url: $(el).find('a').attr('href'),
+            link: $(el).find('a').attr('href'),
             displayedUrl: $(el).find('.a').text(),
             prices,
         });
@@ -114,7 +114,7 @@ exports.extractRelatedQueries = ($, hostname) => {
     $('div[data-hveid="CA0QAA"] a').each((index, el) => {
         related.push({
             title: $(el).text(),
-            url: ensureItsAbsoluteUrl($(el).attr('href'), hostname),
+            link: ensureItsAbsoluteUrl($(el).attr('href'), hostname),
         });
     });
 
