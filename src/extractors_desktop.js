@@ -2,25 +2,26 @@ const { ensureItsAbsoluteUrl } = require('./tools');
 
 exports.extractOgranicResults = ($) => {
     const searchResults = [];
+    if !$('#topstuff').textContent.match(/No se ha encontrado/)
+        $('.g .rc').each((index, el) => {
+            const siteLinks = [];
+            $(el).find('ul li').each((i, siteLinkEl) => {
+                siteLinks.push({
+                    title: $(siteLinkEl).find('h3').text(),
+                    link: $(siteLinkEl).find('h3 a').attr('href'),
+                    description: $(siteLinkEl).find('div').text(),
+                });
+            });
 
-    $('.g .rc').each((index, el) => {
-        const siteLinks = [];
-        $(el).find('ul li').each((i, siteLinkEl) => {
-            siteLinks.push({
-                title: $(siteLinkEl).find('h3').text(),
-                link: $(siteLinkEl).find('h3 a').attr('href'),
-                description: $(siteLinkEl).find('div').text(),
+            searchResults.push({
+                title: $(el).find('h3').text(),
+                link: $(el).find('.r a').attr('href'),
+                displayedUrl: $(el).find('cite').text(),
+                description: $(el).find('.s .st').text(),
+                siteLinks,
             });
         });
-
-        searchResults.push({
-            title: $(el).find('h3').text(),
-            link: $(el).find('.r a').attr('href'),
-            displayedUrl: $(el).find('cite').text(),
-            description: $(el).find('.s .st').text(),
-            siteLinks,
-        });
-    });
+    end
 
     return searchResults;
 };
