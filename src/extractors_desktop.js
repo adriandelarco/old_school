@@ -8,14 +8,14 @@ exports.extractOgranicResults = ($) => {
         $(el).find('ul li').each((i, siteLinkEl) => {
             siteLinks.push({
                 title: $(siteLinkEl).find('h3').text(),
-                url: $(siteLinkEl).find('h3 a').attr('href'),
+                link: $(siteLinkEl).find('h3 a').attr('href'),
                 description: $(siteLinkEl).find('div').text(),
             });
         });
 
         searchResults.push({
             title: $(el).find('h3').text(),
-            url: $(el).find('.r a').attr('href'),
+            link: $(el).find('.r a').attr('href'),
             displayedUrl: $(el).find('cite').text(),
             description: $(el).find('.s .st').text(),
             siteLinks,
@@ -35,14 +35,14 @@ exports.extractPaidResults = ($) => {
 
             siteLinks.push({
                 title: $linkEl.text(),
-                url: $linkEl.attr('href'),
+                link: $linkEl.attr('href'),
                 description: $(siteLinkEl).find('div').text() || null,
             });
         });
 
         ads.push({
             title: $(el).find('h3').text(),
-            url: $(el).find('h3 a').attr('href'),
+            link: $(el).find('h3 a').attr('href'),
             displayedUrl: $(el).find('cite').text(),
             description: $(el).find('.ellip,.ads-creative').text(),
             siteLinks,
@@ -67,7 +67,7 @@ exports.extractPaidProducts = ($) => {
 
         products.push({
             title: headingEl.text(),
-            url: headingEl.find('a').attr('href'),
+            link: headingEl.find('a').attr('href'),
             displayedUrl: displayedUrlEl.find('span:first').text(),
             prices,
         });
@@ -91,7 +91,7 @@ exports.extractRelatedQueries = ($, hostname) => {
     $('#brs a').each((index, el) => {
         related.push({
             title: $(el).text(),
-            url: ensureItsAbsoluteUrl($(el).attr('href'), hostname),
+            link: ensureItsAbsoluteUrl($(el).attr('href'), hostname),
         });
     });
 
