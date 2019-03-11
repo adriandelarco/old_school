@@ -2,33 +2,27 @@ const { ensureItsAbsoluteUrl } = require('./tools');
 
 exports.extractOgranicResults = ($) => {
     const searchResults = [];
-    if ($('#topstuff').length) {
-            console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY');
-            console.log($('#topstuff').text());
-            console.log($('.g .rc').text());
-        if ($('#topstuff')[0].innerText) {
-            console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
-            console.log($('#topstuff').text());
-        } else {
-           $('.g .rc').each((index, el) => {
-                const siteLinks = [];
-                $(el).find('ul li').each((i, siteLinkEl) => {
-                    siteLinks.push({
-                        title: $(siteLinkEl).find('h3').text(),
-                        link: $(siteLinkEl).find('h3 a').attr('href'),
-                        description: $(siteLinkEl).find('div').text(),
-                    });
-                });
-
-                searchResults.push({
-                    title: $(el).find('h3').text(),
-                    link: $(el).find('.r a').attr('href'),
-                    displayedUrl: $(el).find('cite').text(),
-                    description: $(el).find('.s .st').text(),
-                    siteLinks,
+    if (($('#topstuff').text().length > 0) && ($('#topstuff').text().match(/No results/))) {
+        console.log('NO HAY RESULTADOS');
+    } else {
+       $('.g .rc').each((index, el) => {
+            const siteLinks = [];
+            $(el).find('ul li').each((i, siteLinkEl) => {
+                siteLinks.push({
+                    title: $(siteLinkEl).find('h3').text(),
+                    link: $(siteLinkEl).find('h3 a').attr('href'),
+                    description: $(siteLinkEl).find('div').text(),
                 });
             });
-        }
+
+            searchResults.push({
+                title: $(el).find('h3').text(),
+                link: $(el).find('.r a').attr('href'),
+                displayedUrl: $(el).find('cite').text(),
+                description: $(el).find('.s .st').text(),
+                siteLinks,
+            });
+        });
     }
 
     return searchResults;
