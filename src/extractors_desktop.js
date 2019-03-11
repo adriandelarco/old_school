@@ -2,10 +2,12 @@ const { ensureItsAbsoluteUrl } = require('./tools');
 
 exports.extractOgranicResults = ($) => {
     const searchResults = [];
-    console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
-    console.log($('#topstuff')[0]);
-    console.log($('#topstuff')[0].text());
-    console.log($('#topstuff')[0].innerText);
+    if ($('#topstuff').length) {
+        console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+        console.log($('#topstuff')[0]);
+        console.log('XXXXXXXXXXXXXXXXXXinnerTextXXXXXXXXXXXXXXXXXXXXXXXXX');
+        console.log($('#topstuff')[0].innerText);
+    }
     if  ((!$('body').text().match(/No se ha encontrado/)) && (!$('body').text().innerText.match(/No results found/))) {
         $('.g .rc').each((index, el) => {
             const siteLinks = [];
