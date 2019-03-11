@@ -81,7 +81,7 @@ exports.extractPaidProducts = ($) => {
 };
 
 exports.extractTotalResults = ($) => {
-    var numberString = 0
+    var numberString = 1
     //// MODIFIED
     if ((!$('#topstuff').text().length > 0) && (!$('#topstuff').text().match(/No results/))) {
         var wholeString = $('#resultStats').text();
