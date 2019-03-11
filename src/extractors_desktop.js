@@ -6,28 +6,27 @@ exports.extractOgranicResults = ($) => {
         if ($('#topstuff')[0].innerText) {
             console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
             console.log($('#topstuff')[0].innerText);
-        }
-    }
-    if  ((!$('body').text().match(/No se ha encontrado/)) && (!$('body').text().innerText.match(/No results found/))) {
-        $('.g .rc').each((index, el) => {
-            const siteLinks = [];
-            $(el).find('ul li').each((i, siteLinkEl) => {
-                siteLinks.push({
-                    title: $(siteLinkEl).find('h3').text(),
-                    link: $(siteLinkEl).find('h3 a').attr('href'),
-                    description: $(siteLinkEl).find('div').text(),
+        } else {
+           $('.g .rc').each((index, el) => {
+                const siteLinks = [];
+                $(el).find('ul li').each((i, siteLinkEl) => {
+                    siteLinks.push({
+                        title: $(siteLinkEl).find('h3').text(),
+                        link: $(siteLinkEl).find('h3 a').attr('href'),
+                        description: $(siteLinkEl).find('div').text(),
+                    });
+                });
+
+                searchResults.push({
+                    title: $(el).find('h3').text(),
+                    link: $(el).find('.r a').attr('href'),
+                    displayedUrl: $(el).find('cite').text(),
+                    description: $(el).find('.s .st').text(),
+                    siteLinks,
                 });
             });
-
-            searchResults.push({
-                title: $(el).find('h3').text(),
-                link: $(el).find('.r a').attr('href'),
-                displayedUrl: $(el).find('cite').text(),
-                description: $(el).find('.s .st').text(),
-                siteLinks,
-            });
-        });
-    };
+        }
+    }
 
     return searchResults;
 };
