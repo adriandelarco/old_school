@@ -5,12 +5,6 @@ exports.extractOgranicResults = ($) => {
     //// MODIFIED
     if (($('#topstuff').text().length > 0) && ($('#topstuff').text().match(/No results/))) {
         console.log('NO HAY RESULTADOS');
-        searchResults.push({
-            title: 'Resultado vacío',
-            link: 'Resultado vacío',
-            displayedUrl: 'Resultado vacío',
-            description: 'Resultado vacío'
-        });
     } else {
        $('.g .rc').each((index, el) => {
             const siteLinks = [];
@@ -87,7 +81,7 @@ exports.extractPaidProducts = ($) => {
 };
 
 exports.extractTotalResults = ($) => {
-    var numberString = 1
+    var numberString = 0
     //// MODIFIED
     if ((!$('#topstuff').text().length > 0) && (!$('#topstuff').text().match(/No results/))) {
         var wholeString = $('#resultStats').text();
