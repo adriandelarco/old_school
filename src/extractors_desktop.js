@@ -2,7 +2,7 @@ const { ensureItsAbsoluteUrl } = require('./tools');
 
 exports.extractOgranicResults = ($) => {
     const searchResults = [];
-    if  ((!$('body').innerText.match(/No se ha encontrado/)) && (!$('body').innerText.match(/No results found/))) {
+    if  ((!$('body').text().match(/No se ha encontrado/)) && (!$('body').text().innerText.match(/No results found/))) {
         $('.g .rc').each((index, el) => {
             const siteLinks = [];
             $(el).find('ul li').each((i, siteLinkEl) => {
