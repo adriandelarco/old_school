@@ -2,6 +2,7 @@ const { ensureItsAbsoluteUrl } = require('./tools');
 
 exports.extractOgranicResults = ($) => {
     const searchResults = [];
+    //// MODIFIED
     if (($('#topstuff').text().length > 0) && ($('#topstuff').text().match(/No results/))) {
         console.log('NO HAY RESULTADOS');
     } else {
@@ -80,11 +81,14 @@ exports.extractPaidProducts = ($) => {
 };
 
 exports.extractTotalResults = ($) => {
-    const wholeString = $('#resultStats').text();
-
-    // Get number as string from text "Přibližný počet výsledků: 6 730 000 000 (0,30 s)"
-    const numberString = wholeString.split('(').shift().replace(/[^\d]/g, '');
-
+    //// MODIFIED
+    if (($('#topstuff').text().length > 0) && ($('#topstuff').text().match(/No results/))) {
+        const numberString = 0
+    } else {
+        const wholeString = $('#resultStats').text();
+        // Get number as string from text "Přibližný počet výsledků: 6 730 000 000 (0,30 s)"
+        const numberString = wholeString.split('(').shift().replace(/[^\d]/g, '');
+    }
     return Number(numberString);
 };
 
