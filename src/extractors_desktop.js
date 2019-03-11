@@ -4,11 +4,11 @@ exports.extractOgranicResults = ($) => {
     const searchResults = [];
     if ($('#topstuff').length) {
             console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY');
-            console.log($('#topstuff')[0]);
-            console.log($('#topstuff')[0].innerText);
+            console.log($('#topstuff').text());
+            console.log($('.g .rc').text());
         if ($('#topstuff')[0].innerText) {
             console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
-            console.log($('#topstuff')[0].innerText);
+            console.log($('#topstuff').text());
         } else {
            $('.g .rc').each((index, el) => {
                 const siteLinks = [];
