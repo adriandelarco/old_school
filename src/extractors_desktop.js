@@ -6,9 +6,6 @@ exports.extractOgranicResults = ($) => {
             console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY');
             console.log($('#topstuff')[0]);
             console.log($('#topstuff')[0].innerText);
-            console.log($('#topstuff').innerText);
-            console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
-            console.log(document.getElementById("topstuff").innerText);
         if ($('#topstuff')[0].innerText) {
             console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
             console.log($('#topstuff')[0].innerText);
