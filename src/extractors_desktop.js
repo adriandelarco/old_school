@@ -3,10 +3,10 @@ const { ensureItsAbsoluteUrl } = require('./tools');
 exports.extractOgranicResults = ($) => {
     const searchResults = [];
     if ($('#topstuff').length) {
-        console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
-        console.log($('#topstuff')[0]);
-        console.log('XXXXXXXXXXXXXXXXXXinnerTextXXXXXXXXXXXXXXXXXXXXXXXXX');
-        console.log($('#topstuff')[0].innerText);
+        if ($('#topstuff')[0].innerText) {
+            console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+            console.log($('#topstuff')[0].innerText);
+        }
     }
     if  ((!$('body').text().match(/No se ha encontrado/)) && (!$('body').text().innerText.match(/No results found/))) {
         $('.g .rc').each((index, el) => {
